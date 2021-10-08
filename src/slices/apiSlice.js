@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   hasErrors: false,
   data: [],
+  searchedData: [],
 }
 
 export const apiSlice = createSlice({
@@ -15,6 +16,7 @@ export const apiSlice = createSlice({
       state.loading = true
     },
     getDataSuccess: (state, { payload }) => {
+        // console.log('state',state);
       state.data = payload
       state.loading = false
       state.hasErrors = false
@@ -23,13 +25,18 @@ export const apiSlice = createSlice({
       state.loading = false
       state.hasErrors = true
     },
+    searchByRocketName: (state, { payload }) => {
+        if(payload !== ''){
+          state.searchedData = state.data.filter((i) => {return i.rocket.rocket_name.toLowerCase().includes(payload)})
+        }
+    },
   },
   
 })
 
 export const dataSelector = state => state.data
 
-export const { getData, getDataSuccess, getDataFailure } = apiSlice.actions
+export const { getData, getDataSuccess, getDataFailure, searchByRocketName } = apiSlice.actions
 
 export default apiSlice.reducer
 
