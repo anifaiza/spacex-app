@@ -31,9 +31,11 @@ function DataCard({ flight }) {
       <p>
         Time: <b>{time}</b>
       </p>
-      <p>
-        Launch Status: <b>{flight.launch_success ? "Successful" : "Fail"}</b>
-      </p>
+      {!flight.upcoming && (
+        <p>
+          Launch Status: <b>{flight.launch_success ? "Successful" : "Fail"}</b>
+        </p>
+      )}
       <p>
         <b>{flight.upcoming ? "Upcoming*" : ""}</b>
       </p>

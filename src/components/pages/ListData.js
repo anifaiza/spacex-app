@@ -118,7 +118,7 @@ const ListData = () => {
       {filter === 1 && (
         <div className={classes.searchContainer}>
           <SelectInput
-            label="Find from"
+            label="Find from*"
             value={datefilter}
             onChangeFunction={handleDateFilter}
             selectStyle={classes.select}
@@ -129,7 +129,7 @@ const ListData = () => {
       {filter === 2 && (
         <div className={classes.searchContainer}>
           <SelectInput
-            label="Select Status"
+            label="Select Status*"
             value={status}
             onChangeFunction={handleStatusFilter}
             selectStyle={classes.select}
@@ -140,7 +140,7 @@ const ListData = () => {
       {filter === 3 && (
         <div className={classes.searchContainer}>
           <SelectInput
-            label="Select yes/no"
+            label="Select yes/no*"
             value={upcoming}
             onChangeFunction={handleUpcomingFilter}
             selectStyle={classes.select}

@@ -10,9 +10,7 @@ const initialState = {
 
 export const fetchData = createAsyncThunk("api/fechData", async () => {
   const response = await fetch("https://api.spacexdata.com/v3/launches")
-  // console.log(response)
   const data = await response.json()
-  console.log(data)
   return data
 })
 
