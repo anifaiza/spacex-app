@@ -23,7 +23,6 @@ const useStyles = makeStyles({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
-    //   height: '100vh',
   },
   searchContainer: {
     display: "flex",
@@ -45,10 +44,10 @@ const ListData = () => {
   const { data, searchedData } = useSelector(dataSelector)
   const [rocketName, setRocketName] = useState("")
   const [searching, setSearching] = useState(false)
-  const [filter, setFilter] = useState(0)
-  const [datefilter, setDatefilter] = useState(0)
-  const [status, setStatus] = useState(0)
-  const [upcoming, setUpcoming] = useState(0)
+  const [filter, setFilter] = useState("")
+  const [datefilter, setDatefilter] = useState("")
+  const [status, setStatus] = useState("")
+  const [upcoming, setUpcoming] = useState("")
 
   const onRocketNameChange = event => {
     setSearching(false)
@@ -155,12 +154,15 @@ const ListData = () => {
           ))}
         </div>
       )}
-      {searching && (
+      {searching && searchedData.length > 0 && (
         <div className={classes.displayFlex}>
           {searchedData.map(item => (
             <DataCard key={item.mission_name} flight={item} />
           ))}
         </div>
+      )}
+      {searching && searchedData.length === 0 && (
+        <h3>No data found for this search</h3>
       )}
     </Container>
   )
