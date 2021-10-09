@@ -94,14 +94,14 @@ export const apiSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchData.pending]: (state, action) => {
+    [fetchData.pending]: state => {
       state.loading = true
     },
     [fetchData.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.data = payload
     },
-    [fetchData.rejected]: (state, action) => {
+    [fetchData.rejected]: state => {
       state.loading = false
       state.hasErrors = true
     },
