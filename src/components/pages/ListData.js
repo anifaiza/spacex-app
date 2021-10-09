@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Container, Button, TextField } from "@mui/material"
+import { makeStyles } from "@mui/styles"
 import {
   fetchData,
   dataSelector,
@@ -7,11 +9,9 @@ import {
   filterLaunchStatus,
   filterLaunchDate,
   filterUpcoming,
-} from "../../slices/apiSlice";
-import DataCard from "../common/Card";
-import { Container, Button, TextField } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import SelectInput from "../common/SelectInput";
+} from "../../slices/apiSlice"
+import DataCard from "../common/Card"
+import SelectInput from "../common/SelectInput"
 
 const useStyles = makeStyles({
   root: {
@@ -37,70 +37,70 @@ const useStyles = makeStyles({
   select: {
     height: "30px",
   },
-});
+})
 
 const ListData = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const { data, searchedData } = useSelector(dataSelector);
-  const [rocketName, setRocketName] = useState("");
-  const [searching, setSearching] = useState(false);
-  const [filter, setFilter] = useState(0);
-  const [datefilter, setDatefilter] = useState(0);
-  const [status, setStatus] = useState(0);
-  const [upcoming, setUpcoming] = useState(0);
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const { data, searchedData } = useSelector(dataSelector)
+  const [rocketName, setRocketName] = useState("")
+  const [searching, setSearching] = useState(false)
+  const [filter, setFilter] = useState(0)
+  const [datefilter, setDatefilter] = useState(0)
+  const [status, setStatus] = useState(0)
+  const [upcoming, setUpcoming] = useState(0)
 
   const onRocketNameChange = event => {
-    setSearching(false);
-    setRocketName(event.target.value);
-  };
+    setSearching(false)
+    setRocketName(event.target.value)
+  }
 
   const handleRocketNameSubmit = () => {
-    setSearching(true);
-    dispatch(searchByRocketName(rocketName, data));
-  };
+    setSearching(true)
+    dispatch(searchByRocketName(rocketName, data))
+  }
 
   const handleFilterChange = event => {
-    setFilter(event.target.value);
-  };
+    setFilter(event.target.value)
+  }
 
   const handleDateFilter = event => {
-    setSearching(true);
-    setDatefilter(event.target.value);
-    dispatch(filterLaunchDate(event.target.value));
-  };
+    setSearching(true)
+    setDatefilter(event.target.value)
+    dispatch(filterLaunchDate(event.target.value))
+  }
 
   const handleStatusFilter = event => {
-    setSearching(true);
-    setStatus(event.target.value);
-    dispatch(filterLaunchStatus(event.target.value));
-  };
+    setSearching(true)
+    setStatus(event.target.value)
+    dispatch(filterLaunchStatus(event.target.value))
+  }
 
   const handleUpcomingFilter = event => {
-    setSearching(true);
-    setUpcoming(event.target.value);
-    dispatch(filterUpcoming(event.target.value));
-  };
+    setSearching(true)
+    setUpcoming(event.target.value)
+    dispatch(filterUpcoming(event.target.value))
+  }
 
   useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
+    dispatch(fetchData())
+  }, [dispatch])
 
   return (
-    <Container maxWidth='lg' className={classes.root}>
+    <Container maxWidth="lg" className={classes.root}>
       <Button onClick={() => setSearching(false)}>Reset all data</Button>
       <div className={classes.searchContainer}>
         <TextField
-          id='filled-hidden-label-small'
-          label='enter rocket name'
-          variant='filled'
-          size='small'
+          id="filled-hidden-label-small"
+          label="enter rocket name"
+          variant="filled"
+          size="small"
           // onChange={(e)=>dispatch(searchByRocketName(e.target.value.toLocaleLowerCase()))}
           onChange={e => onRocketNameChange(e)}
         />
         <Button
-          variant='contained'
-          size='large'
+          variant="contained"
+          size="large"
           onClick={handleRocketNameSubmit}
         >
           Search
@@ -108,7 +108,7 @@ const ListData = () => {
       </div>
       <div className={classes.searchContainer}>
         <SelectInput
-          label='Filter Data by'
+          label="Filter Data by"
           value={filter}
           onChangeFunction={handleFilterChange}
           selectStyle={classes.select}
@@ -118,7 +118,7 @@ const ListData = () => {
       {filter === 1 && (
         <div className={classes.searchContainer}>
           <SelectInput
-            label='Find from'
+            label="Find from"
             value={datefilter}
             onChangeFunction={handleDateFilter}
             selectStyle={classes.select}
@@ -129,7 +129,7 @@ const ListData = () => {
       {filter === 2 && (
         <div className={classes.searchContainer}>
           <SelectInput
-            label='Select Status'
+            label="Select Status"
             value={status}
             onChangeFunction={handleStatusFilter}
             selectStyle={classes.select}
@@ -140,7 +140,7 @@ const ListData = () => {
       {filter === 3 && (
         <div className={classes.searchContainer}>
           <SelectInput
-            label='Select yes/no'
+            label="Select yes/no"
             value={upcoming}
             onChangeFunction={handleUpcomingFilter}
             selectStyle={classes.select}
@@ -150,20 +150,20 @@ const ListData = () => {
       )}
       {!searching && (
         <div className={classes.displayFlex}>
-          {data.map((item, i) => (
-            <DataCard key={i} flight={item} />
+          {data.map(item => (
+            <DataCard key={item.mission_name} flight={item} />
           ))}
         </div>
       )}
       {searching && (
         <div className={classes.displayFlex}>
-          {searchedData.map((item, i) => (
-            <DataCard key={i} flight={item} />
+          {searchedData.map(item => (
+            <DataCard key={item.mission_name} flight={item} />
           ))}
         </div>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default ListData;
+export default ListData

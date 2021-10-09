@@ -1,24 +1,28 @@
 {
-    "env": {
-        "browser": true,
-        "es2020": true
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "jest": true
+  },
+  "extends": ["airbnb", "prettier", "plugin:react/recommended"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": ["airbnb", "prettier", "plugin:react/recommended"],
-    "plugins": ["prettier"],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "rules": {
-        "prettier/prettier": "error",
-        "no-unused-vars": "warn",
-        "no-console": "off",
-        "func-names": "off",
-        "no-process-exit": "off",
-        "object-shorthand": "off",
-        "class-methods-use-this": "off"
-    }
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "func-names": "off",
+    "no-process-exit": "off",
+    "object-shorthand": "off",
+    "class-methods-use-this": "off",
+    "react/prop-types": 0,
+    "no-param-reassign": 0
+  }
 }

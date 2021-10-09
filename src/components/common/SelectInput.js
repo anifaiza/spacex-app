@@ -1,28 +1,32 @@
-import React from "react";
-import { Select, MenuItem, InputLabel } from "@mui/material";
+import React from "react"
+import { Select, MenuItem, InputLabel } from "@mui/material"
 
-function SelectInput(props) {
+function SelectInput({
+  label,
+  value,
+  selectStyle,
+  menuList,
+  onChangeFunction,
+}) {
   return (
     <>
-      <InputLabel id='demo-simple-select-standard-label'>
-        {props.label}
-      </InputLabel>
+      <InputLabel id="demo-simple-select-standard-label">{label}</InputLabel>
       <Select
-        labelId='demo-simple-select-standard-label'
-        id='demo-simple-select-standard'
-        value={props.value}
-        onChange={e => props.onChangeFunction(e)}
-        label='Filter Data by'
-        className={props.selectStyle}
+        labelId="demo-simple-select-standard-label"
+        id="demo-simple-select-standard"
+        value={value}
+        onChange={e => onChangeFunction(e)}
+        label="Filter Data by"
+        className={selectStyle}
       >
-        {props.menuList.map((item, i) => (
-          <MenuItem value={i + 1} key={i}>
+        {menuList.map((item, i) => (
+          <MenuItem value={i + 1} key={item}>
             {item}
           </MenuItem>
         ))}
       </Select>
     </>
-  );
+  )
 }
 
-export default SelectInput;
+export default SelectInput

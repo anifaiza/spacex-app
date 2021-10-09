@@ -1,6 +1,6 @@
-import React from "react";
-import Card from "@mui/material/Card";
-import { makeStyles } from "@mui/styles";
+import React from "react"
+import Card from "@mui/material/Card"
+import { makeStyles } from "@mui/styles"
 
 const useStyles = makeStyles({
   card: {
@@ -8,26 +8,26 @@ const useStyles = makeStyles({
     margin: "10px 0px;",
     padding: "0px 10px",
   },
-});
+})
 
-function DataCard(props) {
-  const classes = useStyles();
-  const date = props.flight.launch_date_local.split("T")[0];
-  const time = props.flight.launch_date_local.split("T")[1].split("+")[0];
+function DataCard({ flight }) {
+  const classes = useStyles()
+  const date = flight.launch_date_local.split("T")[0]
+  const time = flight.launch_date_local.split("T")[1].split("+")[0]
   return (
-    <Card variant='outlined' className={classes.card}>
-      <p>Mission name: {props.flight.mission_name}</p>
-      <p>Rocket: {props.flight.mission_name}</p>
-      <p>Launch Year: {props.flight.rocket.rocket_name}</p>
+    <Card variant="outlined" className={classes.card}>
+      <p>Mission name: {flight.mission_name}</p>
+      <p>Rocket: {flight.mission_name}</p>
+      <p>Launch Year: {flight.rocket.rocket_name}</p>
       <p>
         Date: {date} Time: {time}
       </p>
-      {/* <p>{props.flight.mission_name}</p>
-            <p>{props.flight.mission_name}</p>
-            <p>{props.flight.mission_name}</p>
-            <p>{props.flight.mission_name}</p> */}
+      {/* <p>{flight.mission_name}</p>
+            <p>{flight.mission_name}</p>
+            <p>{flight.mission_name}</p>
+            <p>{flight.mission_name}</p> */}
     </Card>
-  );
+  )
 }
 
-export default DataCard;
+export default DataCard
