@@ -1,5 +1,5 @@
 import store from "../store/store"
-import reducer, { fetchData } from "./apiSlice"
+import reducer, { fetchData, searchByRocketName } from "./apiSlice"
 
 test("should return the initial state", () => {
   expect(reducer(undefined, {})).toEqual({
@@ -8,6 +8,13 @@ test("should return the initial state", () => {
     data: [],
     searchedData: [],
   })
+})
+
+test("should return correct search result", () => {
+  const prevState = store.getState().data
+  expect(
+    reducer(prevState.searchedData.length, searchByRocketName("falcon heavy"))
+  ).toEqual(3)
 })
 
 const fetch = jest.fn(() => {
