@@ -20,19 +20,6 @@ export const apiSlice = createSlice({
   name: "sapcexData",
   initialState,
   reducers: {
-    // getData: state => {
-    //   state.loading = true
-    // },
-    // getDataSuccess: (state, { payload }) => {
-    //   // console.log('state',state);
-    //   state.data = payload
-    //   state.loading = false
-    //   state.hasErrors = false
-    // },
-    // getDataFailure: state => {
-    //   state.loading = false
-    //   state.hasErrors = true
-    // },
     searchByRocketName: (state, { payload }) => {
       if (payload !== "") {
         state.searchedData = state.data.filter(i =>
@@ -48,9 +35,7 @@ export const apiSlice = createSlice({
           today.getMonth(),
           today.getDate() - 7
         )
-        console.log(lastWeek)
         lastWeek = lastWeek.getTime() / 1000
-        // console.log(lastWeek)
         state.searchedData = state.data.filter(
           i => i.launch_date_unix > lastWeek
         )
@@ -60,9 +45,7 @@ export const apiSlice = createSlice({
           today.getMonth(),
           today.getDate() - 30
         )
-        console.log(lastMonth)
         lastMonth = lastMonth.getTime() / 1000
-        // console.log(lastMonth)
         state.searchedData = state.data.filter(
           i => i.launch_date_unix > lastMonth
         )
@@ -72,9 +55,7 @@ export const apiSlice = createSlice({
           today.getMonth(),
           today.getDate() - 365
         )
-        console.log(lastYear)
         lastYear = lastYear.getTime() / 1000
-        // console.log(lastYear)
         state.searchedData = state.data.filter(
           i => i.launch_date_unix > lastYear
         )
@@ -113,9 +94,6 @@ export const apiSlice = createSlice({
 export const dataSelector = state => state.data
 
 export const {
-  // getData,
-  // getDataSuccess,
-  // getDataFailure,
   searchByRocketName,
   filterLaunchStatus,
   filterLaunchDate,

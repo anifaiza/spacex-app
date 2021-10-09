@@ -16,16 +16,27 @@ function DataCard({ flight }) {
   const time = flight.launch_date_local.split("T")[1].split("+")[0]
   return (
     <Card variant="outlined" className={classes.card}>
-      <p>Mission name: {flight.mission_name}</p>
-      <p>Rocket: {flight.mission_name}</p>
-      <p>Launch Year: {flight.rocket.rocket_name}</p>
       <p>
-        Date: {date} Time: {time}
+        Mission name: <b>{flight.mission_name}</b>
       </p>
-      {/* <p>{flight.mission_name}</p>
-            <p>{flight.mission_name}</p>
-            <p>{flight.mission_name}</p>
-            <p>{flight.mission_name}</p> */}
+      <p>
+        Rocket: <b>{flight.rocket.rocket_name}</b>
+      </p>
+      <p>
+        Rocket Type: <b>{flight.rocket.rocket_type}</b>
+      </p>
+      <p>
+        Date: <b>{date}</b>
+      </p>
+      <p>
+        Time: <b>{time}</b>
+      </p>
+      <p>
+        Launch Status: <b>{flight.launch_success ? "Successful" : "Fail"}</b>
+      </p>
+      <p>
+        <b>{flight.upcoming ? "Upcoming*" : ""}</b>
+      </p>
     </Card>
   )
 }
