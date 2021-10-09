@@ -1,3 +1,4 @@
+import store from "../store/store"
 import reducer, { fetchData } from "./apiSlice"
 
 test("should return the initial state", () => {
@@ -9,19 +10,19 @@ test("should return the initial state", () => {
   })
 })
 
-test("should set data correctly from api", async () => {
-  const response = await fetch("https://api.spacexdata.com/v3/launches")
-  const apiState = await response.json()
-  const prevState = {
-    loading: false,
-    hasErrors: false,
-    data: [],
-    searchedData: [],
-  }
-  expect(reducer(prevState, fetchData())).toEqual({
-    loading: false,
-    hasErrors: false,
-    data: apiState,
-    searchedData: [],
+const fetch = jest.fn(() => {
+  Promise.resolve({
+    json: () => Promise.resolve([store.getState().data]),
   })
+})
+
+beforeEach(() => {
+  fetch.mockClear()
+})
+
+it("fetches correct data from api", async () => {
+  const data = await fetchData()
+
+  expect(data).toEqual(store.getState().data.data)
+  expect(fetch).toHaveBeenCalledTimes(1)
 })
